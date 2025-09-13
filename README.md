@@ -232,3 +232,4 @@ n8n-cicd/
 ---
 
 **Happy Coding! 🎉**
+# CI/CD 자동 배포 테스트

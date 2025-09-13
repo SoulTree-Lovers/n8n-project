@@ -18,11 +18,11 @@ echo "Docker Image: $DOCKER_IMAGE"
 # 환경별 설정
 case $ENVIRONMENT in
   "production")
-    PORT=8080
+    PORT=8082
     DATABASE_URL="jdbc:postgresql://postgres:5432/n8n"
     ;;
   "staging")
-    PORT=8081
+    PORT=8083
     DATABASE_URL="jdbc:postgresql://postgres:5432/n8n_staging"
     ;;
   *)
@@ -46,9 +46,9 @@ docker run -d \
   --name $APP_NAME-$ENVIRONMENT \
   --restart unless-stopped \
   -p $PORT:8080 \
-  -e SPRING_DATASOURCE_URL="$DATABASE_URL" \
-  -e SPRING_DATASOURCE_USERNAME="postgres" \
-  -e SPRING_DATASOURCE_PASSWORD="postgres" \
+    -e SPRING_DATASOURCE_URL="jdbc:postgresql://host.docker.internal:5433/n8n" \
+    -e SPRING_DATASOURCE_USERNAME="postgres" \
+    -e SPRING_DATASOURCE_PASSWORD="postgres" \
   -e SPRING_PROFILES_ACTIVE="$ENVIRONMENT" \
   $DOCKER_IMAGE
 
