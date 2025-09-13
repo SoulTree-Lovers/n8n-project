@@ -234,3 +234,4 @@ n8n-cicd/
 **Happy Coding! 🎉**
 # CI/CD 자동 배포 테스트
 ## 🚀 CI/CD 자동 배포 테스트 - Sun Sep 14 00:34:51 KST 2025
+## 🔑 Docker Hub Access Token 사용 - Sun Sep 14 00:59:07 KST 2025
