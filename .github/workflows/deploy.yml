@@ -1,0 +1,19 @@
+name: CI/CD Deploy
+
+on:
+  push:
+    branches: ["main"]   # main 브랜치에 push 시 배포
+  workflow_dispatch:      # 필요 시 수동 실행도 가능
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Mac mini runner
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Stop and remove old containers
+        run: docker compose down --remove-orphans
+
+      - name: Build and start containers
+        run: docker compose up -d --build
