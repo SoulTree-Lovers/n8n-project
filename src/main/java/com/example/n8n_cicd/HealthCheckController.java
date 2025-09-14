@@ -9,7 +9,7 @@ public class HealthCheckController {
 
     @RequestMapping("/health")
     public String healthCheck() {
-        return "OK";
+        return "Hello World!";
     }
 
 }
