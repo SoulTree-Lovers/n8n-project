@@ -43,7 +43,6 @@ services:
     restart: unless-stopped
     networks:
       - app-network
-      - n8n-network   # n8n 쪽 네트워크에도 연결 (external)
 
 volumes:
   postgres_data:
@@ -51,5 +50,4 @@ volumes:
 networks:
   app-network:
     driver: bridge
-  n8n-network:
-    external: true
+
