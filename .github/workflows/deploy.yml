@@ -1,16 +1,11 @@
-name: CI/CD Deploy
-
-on:
-  push:
-    branches: ["main"]   # main 브랜치에 push 시 배포
-  workflow_dispatch:      # 필요 시 수동 실행도 가능
-
 jobs:
   deploy:
-    runs-on: self-hosted  # Mac mini runner
+    runs-on: self-hosted
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Stop and remove old containers
         run: docker compose down --remove-orphans
