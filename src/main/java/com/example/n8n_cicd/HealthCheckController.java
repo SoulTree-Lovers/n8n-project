@@ -9,7 +9,7 @@ public class HealthCheckController {
 
     @RequestMapping("/health")
     public String healthCheck() {
-        return "서버가 정상 작동합니다!\n This is a health check endpoint.\n  The application is running.";
+        return "안녕하세요. 서버가 정상 작동합니다!\n This is a health check endpoint.\n  The application is running.";
     }
 
 }
