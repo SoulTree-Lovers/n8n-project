@@ -14,8 +14,20 @@ jobs:
 
       - name: Stop and remove old containers
         run: |
+          echo "🛑 Stopping old containers..."
           docker compose -p n8n-project down --remove-orphans || true
 
-      - name: Build and start containers
-        run: docker compose -p n8n-project up -d --build
+          echo "🧹 Removing leftover containers..."
+          docker rm -f springboot postgres || true
 
+          echo "🧹 Cleaning up unused networks and volumes..."
+          docker network prune -f || true
+          docker volume prune -f || true
+
+      - name: Build and start containers
+        run: |
+          echo "🚀 Building and starting new containers..."
+          docker compose -p n8n-project up -d --build
+
+      - name: Show running containers
+        run: docker ps -a
