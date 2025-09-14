@@ -35,9 +35,21 @@ services:
     networks:
       - app-network
 
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel run myapp-tunnel
+    volumes:
+      - /Users/kangseungmin/.cloudflared:/etc/cloudflared
+    restart: unless-stopped
+    networks:
+      - app-network
+      - n8n-network   # n8n 쪽 네트워크에도 연결 (external)
+
 volumes:
   postgres_data:
 
 networks:
   app-network:
     driver: bridge
+  n8n-network:
+    external: true
