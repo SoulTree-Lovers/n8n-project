@@ -19,7 +19,6 @@ services:
 
   postgres:
     image: postgres:15
-    container_name: postgres
     environment:
       - POSTGRES_DB=myapp
       - POSTGRES_USER=postgres
